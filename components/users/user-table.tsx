@@ -9,6 +9,7 @@ import Badge from "@/components/ui/badge";
 import { useUsersFilter } from "@/providers/users-filter-provider";
 import { User } from "@/types/user";
 import { SortType } from "@/types/user";
+import { useRouter } from "next/navigation";
 
 interface Props {
   users: User[];
@@ -17,6 +18,7 @@ interface Props {
 export default function UsersTable({ users }: Props) {
   const { search, setSearch, sortBy, setSortBy } = useUsersFilter();
 
+  const router = useRouter();
   const filteredUsers = useMemo(() => {
     const keyword = search.trim().toLowerCase();
 
@@ -168,7 +170,9 @@ export default function UsersTable({ users }: Props) {
                 filteredUsers.map((user) => (
                   <tr
                     key={user.id}
+                    onClick={() => router.push(`/users/${user.id}`)}
                     className="
+                    cursor-pointer
                       border-b
                       border-gray-100
                       transition
@@ -176,40 +180,38 @@ export default function UsersTable({ users }: Props) {
                     "
                   >
                     <td className="px-6 py-5">
-                      <Link href={`/users/${user.id}`} className="block">
-                        <div
-                          className="
+                      <div
+                        className="
                             font-semibold
                             text-gray-900
                             max-w-[250]
                             truncate
                           "
-                        >
-                          {user.name}
-                        </div>
+                      >
+                        {user.name}
+                      </div>
 
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          <Badge>Posts: {user.activity.totalPosts}</Badge>
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        <Badge>Posts: {user.activity.totalPosts}</Badge>
 
-                          <Badge
-                            className="
+                        <Badge
+                          className="
                               bg-green-100
                               text-green-700
                             "
-                          >
-                            Done: {user.activity.completedTodos}
-                          </Badge>
+                        >
+                          Done: {user.activity.completedTodos}
+                        </Badge>
 
-                          <Badge
-                            className="
+                        <Badge
+                          className="
                               bg-orange-100
                               text-orange-700
                             "
-                          >
-                            Pending: {user.activity.pendingTodos}
-                          </Badge>
-                        </div>
-                      </Link>
+                        >
+                          Pending: {user.activity.pendingTodos}
+                        </Badge>
+                      </div>
                     </td>
 
                     <td
