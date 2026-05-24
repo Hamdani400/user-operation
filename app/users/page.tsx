@@ -5,8 +5,6 @@ import { getUsersWithActivity } from "@/lib/users";
 export default async function Page() {
   const users = await getUsersWithActivity();
 
-  console.log(users);
-
   return (
     <div className="w-full flex justify-center items-center h-screen">
       <Card className="w-3/4 md:w-1/2">

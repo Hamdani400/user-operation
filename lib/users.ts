@@ -6,7 +6,6 @@ export async function getUsersWithActivity() {
     getPosts(),
     getTodos(),
   ]);
-  console.log("ini users:", users);
   return users.map((user: any) => {
     const userPosts = posts.filter((post: any) => post.userId === user.id);
 
