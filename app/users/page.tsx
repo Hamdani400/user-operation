@@ -9,7 +9,7 @@ export default async function Page() {
 
   return (
     <div className="w-full flex justify-center items-center h-screen">
-      <Card className="w-1/2">
+      <Card className="w-3/4 md:w-1/2">
         <UsersTable users={users} />
       </Card>
     </div>

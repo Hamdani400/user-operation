@@ -128,8 +128,8 @@ export default function UsersTable({ users }: Props) {
         </div>
       </div>
 
-      <Card className="overflow-hidden p-0">
-        <div className="overflow-x-auto">
+      <div className="overflow-hidden p-0">
+        <div className="overflow-x-auto hidden md:block">
           <table className="w-full">
             <thead
               className="
@@ -237,7 +237,63 @@ export default function UsersTable({ users }: Props) {
             </tbody>
           </table>
         </div>
-      </Card>
+        <div className="md:hidden">
+          {filteredUsers.length === 0 ? (
+            <tr>
+              <td
+                colSpan={3}
+                className="
+                      px-6
+                      py-14
+                      text-center
+                      text-sm
+                      text-gray-500
+                    "
+              >
+                No users found.
+              </td>
+            </tr>
+          ) : (
+            <div className="overflow-auto max-h-[70vh]">
+              {filteredUsers.map((user) => (
+                <div
+                  key={user.id}
+                  className="mb-3 border py-5 px-2 rounded-md border-white/40 shadow-[0_2px_12px_rgba(15,23,42,0.06)]"
+                >
+                  <Link href={`/users/${user.id}`}>
+                    <h1 className="text-lg text-gray-700 font-semibold">
+                      {user.name}
+                    </h1>
+                    <p className="text-gray-500 text-sm">{user.email}</p>
+                    <p className="text-gray-500 text-sm">{user.website}</p>
+                    <div className="flex mt-2 flex-wrap gap-2">
+                      <Badge>Posts: {user.activity.totalPosts}</Badge>
+
+                      <Badge
+                        className="
+                                bg-green-100
+                                text-green-700
+                              "
+                      >
+                        Done: {user.activity.completedTodos}
+                      </Badge>
+
+                      <Badge
+                        className="
+                                bg-orange-100
+                                text-orange-700
+                              "
+                      >
+                        Pending: {user.activity.pendingTodos}
+                      </Badge>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

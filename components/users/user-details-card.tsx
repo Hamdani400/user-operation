@@ -253,8 +253,8 @@ export default function UserDetailsCard({
           value={todos.filter((todo) => !todo.completed).length}
         />
       </div>
-      <div className="flex p-8 gap-4">
-        <Section title="Recent Posts" className="w-1/2">
+      <div className="md:flex p-8 gap-4">
+        <Section title="Recent Posts" className="mb-10 md:w-1/2">
           <div className="space-y-4 md:col-span-2">
             {posts.slice(0, 3).map((post) => (
               <div
@@ -290,7 +290,7 @@ export default function UserDetailsCard({
             ))}
           </div>
         </Section>
-        <Section title="Recent Todos" className="w-1/2">
+        <Section title="Recent Todos" className="md:w-1/2">
           <div className="space-y-3 md:col-span-2">
             {todos.slice(0, 6).map((todo) => (
               <div
