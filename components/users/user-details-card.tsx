@@ -1,26 +1,10 @@
 import { Building2, Globe, Mail, MapPin, Phone } from "lucide-react";
 import StatCard from "@/components/ui/stat-card";
 import Section from "@/components/ui/section";
+import type { UserDetail } from "@/types/user";
 
 interface UserDetailsCardProps {
-  user: {
-    name: string;
-    username: string;
-    email: string;
-    phone: string;
-    website: string;
-    address: {
-      street: string;
-      suite: string;
-      city: string;
-      zipcode: string;
-    };
-    company: {
-      name: string;
-      catchPhrase: string;
-      bs: string;
-    };
-  };
+  user: UserDetail;
   posts: any[];
   todos: any[];
 }
@@ -43,7 +27,7 @@ export default function UserDetailsCard({
     >
       <div
         className="
-          bg-gradient-to-r
+          bg-linear-to-r
           from-blue-600
           to-indigo-600
           px-8

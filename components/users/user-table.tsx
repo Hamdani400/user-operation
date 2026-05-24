@@ -1,32 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 import Card from "@/components/ui/card";
 import Badge from "@/components/ui/badge";
 
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  website: string;
-
-  activity: {
-    totalPosts: number;
-    completedTodos: number;
-    pendingTodos: number;
-  };
-}
+import { useUsersFilter } from "@/providers/users-filter-provider";
+import { User } from "@/types/user";
+import { SortType } from "@/types/user";
 
 interface Props {
   users: User[];
 }
 
 export default function UsersTable({ users }: Props) {
-  const [search, setSearch] = useState("");
-
-  const [sortBy, setSortBy] = useState("name-asc");
+  const { search, setSearch, sortBy, setSortBy } = useUsersFilter();
 
   const filteredUsers = useMemo(() => {
     const keyword = search.trim().toLowerCase();
@@ -109,7 +98,7 @@ export default function UsersTable({ users }: Props) {
         >
           <select
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
+            onChange={(e) => setSortBy(e.target.value as SortType)}
             className="
       rounded-xl
       border

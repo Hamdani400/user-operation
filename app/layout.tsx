@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import { UsersFilterProvider } from "@/providers/users-filter-provider";
 
 import "./globals.css";
 
@@ -20,17 +21,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={geist.className}>
-        <main
-          className="
+        <UsersFilterProvider>
+          <main
+            className="
             min-h-screen
             bg-linear-to-br
             from-blue-300
             via-sky-200
             to-violet-300
           "
-        >
-          {children}
-        </main>
+          >
+            {children}
+          </main>
+        </UsersFilterProvider>
       </body>
     </html>
   );

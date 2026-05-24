@@ -67,8 +67,7 @@ export default async function UserPage({ params }: Props) {
             border
             border-slate-200
             bg-white
-            px-4
-            py-2
+            p-4
             text-sm
             font-medium
             text-slate-700
@@ -80,7 +79,6 @@ export default async function UserPage({ params }: Props) {
           "
         >
           <ArrowLeft size={16} />
-          Back to list
         </Link>
 
         <UserDetailsCard user={user} todos={todos} posts={posts} />
